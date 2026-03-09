@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Senin İçin</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+background:#bde7ff;
+font-family:Arial;
+text-align:center;
+}
+
+/* uçan kalpler */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:14px;
+opacity:0.6;
+animation:fly 8s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
+}
+
+/* yumurta */
+
+#egg{
+font-size:120px;
+margin-top:150px;
+cursor:pointer;
+transition:transform .4s;
+}
+
+.crack{
+animation:shake .5s;
+}
+
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(-10deg)}
+50%{transform:rotate(10deg)}
+75%{transform:rotate(-10deg)}
+100%{transform:rotate(0)}
+}
+
+/* penguen */
+
+#penguin{
+position:fixed;
+bottom:80px;
+left:-120px;
+font-size:90px;
+display:none;
+}
+
+.walk{
+animation:walk 4s forwards;
+}
+
+@keyframes walk{
+0%{left:-120px}
+100%{left:calc(50% - 40px)}
+}
+
+/* not */
+
+#note{
+display:none;
+background:white;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+#message{
+display:none;
+margin-top:20px;
+font-size:20px;
+color:#333;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Senin için küçük bir sürpriz hazırladım</h2>
+
+<div id="egg" onclick="openEgg()">🥚</div>
+
+<div id="penguin">
+🐧
+<div id="note" onclick="showMessage()">📜 Notu Aç</div>
+</div>
+
+<div id="message">
+Senden gerçekten özür diliyorum.<br><br>
+Seni kırmak istememiştim.<br>
+Benim için çok değerlisin.<br><br>
+Beni affeder misin? ❤️
+</div>
+
+<script>
+
+/* kalpler */
+
+setInterval(()=>{
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=6+Math.random()*4+"s"
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),9000)
+
+},900)
+
+
+/* yumurta */
+
+function openEgg(){
+
+let egg=document.getElementById("egg")
+egg.classList.add("crack")
+
+setTimeout(()=>{
+egg.style.display="none"
+
+let penguin=document.getElementById("penguin")
+penguin.style.display="block"
+penguin.classList.add("walk")
+
+setTimeout(()=>{
+document.getElementById("note").style.display="block"
+},4000)
+
+},500)
+
+}
+
+/* mesaj */
+
+function showMessage(){
+document.getElementById("message").style.display="block"
+}
+
+</script>
+
+</body>
+</html>
